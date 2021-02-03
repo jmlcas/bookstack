@@ -8,7 +8,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - APP_URL= <tudominio.com>
+      - TZ=Europe/Madrid  
       - DB_HOST=bookstack_db
       - DB_USER=bookstack
       - DB_PASS=p4ssw0rd
@@ -16,7 +16,7 @@ services:
     volumes:
       - ./app-data:/config
     ports:
-      - 80:80
+      - 8080:80
     restart: unless-stopped
     depends_on:
       - bookstack_db
@@ -27,8 +27,8 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Europe/Madrid    
       - MYSQL_ROOT_PASSWORD=p4ssw0rd
-      - TZ=Europe/Madrid
       - MYSQL_DATABASE=bookstackapp
       - MYSQL_USER=bookstack
       - MYSQL_PASSWORD=p4ssw0rd
