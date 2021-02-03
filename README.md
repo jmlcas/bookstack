@@ -1,3 +1,7 @@
 # bookstack
 Bookstack - docker-compose
-ver en Localhost:80
+
+Ver en Localhost:8080
+
+Usuario: admin@admin.com
+Password: password
