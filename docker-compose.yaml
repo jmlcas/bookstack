@@ -1,9 +1,7 @@
-version: "3" 
-
 services: 
 
   bookstack:
-    image: ghcr.io/linuxserver/bookstack
+    image: lscr.io/linuxserver/bookstack
     container_name: bookstack
     environment:
       - PUID=1000
@@ -11,6 +9,7 @@ services:
       - TZ=Europe/Madrid  
       - APP_URL=http://localhost:6875 #https://tudominio.com ó http://IP:6875      
       - DB_HOST=bookstack_db
+      - DB_PORT=3306
       - DB_USER=bookstack
       - DB_PASS=p4ssw0rd
       - DB_DATABASE=bookstackapp
@@ -23,7 +22,7 @@ services:
       - bookstack_db
 
   bookstack_db:
-    image: ghcr.io/linuxserver/mariadb
+    image: lscr.io/linuxserver/mariadb
     container_name: bookstack_db
     environment:
       - PUID=1000
