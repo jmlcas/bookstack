@@ -26,3 +26,4 @@ services:
       - MYSQL_PASSWORD=secret
     volumes:
       - ./mariadb-data:/var/lib/mysql
+      
