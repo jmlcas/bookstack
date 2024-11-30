@@ -9,7 +9,7 @@ services:
       - DB_DATABASE=bookstack
       - DB_USERNAME=bookstack
       - DB_PASSWORD=secret
-      - APP_URL=http://IP:6875
+      - APP_URL=http://localhost:6875   # http://IP:6875
       - APP_KEY=SomeRandomStringWith32Characters
     volumes:
       - ./uploads:/var/www/bookstack/public/uploads
