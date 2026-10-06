@@ -1,29 +1,37 @@
 services:
 
   bookstack:
-    image: solidnerd/bookstack:latest
-    depends_on:
-      - mariadb
+    image: lscr.io/linuxserver/bookstack:latest    # version-v26.03.3
+    container_name: bookstack
     environment:
-      - DB_HOST=mariadb:3306
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - APP_URL=http://localhost:6875
+      - APP_KEY=base64:3qjlIoUX4Tw6fUQgZcxMbz6lb8+dAzqpvItqHvahW1c=
+      - DB_HOST=mariadb
+      - DB_PORT=3306
       - DB_DATABASE=bookstack
       - DB_USERNAME=bookstack
-      - DB_PASSWORD=secret
-      - APP_URL=http://localhost:6875   # http://IP:6875
-      - APP_KEY=SomeRandomStringWith32Characters
+      - DB_PASSWORD=p4ssw0rd
     volumes:
-      - ./uploads:/var/www/bookstack/public/uploads
-      - ./storage-uploads:/var/www/bookstack/storage/uploads
+      - ./bookstack_app_data:/config
     ports:
-      - "6875:8080" 
+      - 6875:80
+    restart: unless-stopped
 
   mariadb:
-    image: mariadb
+    image: lscr.io/linuxserver/mariadb:latest  # 11.4.9
+    container_name: bs_mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD=secret
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - MYSQL_ROOT_PASSWORD=p4ssw0rd
       - MYSQL_DATABASE=bookstack
       - MYSQL_USER=bookstack
-      - MYSQL_PASSWORD=secret
+      - MYSQL_PASSWORD=p4ssw0rd
     volumes:
-      - ./mariadb-data:/var/lib/mysql
+      - ./bookstack_db_data:/config
+    restart: unless-stopped
       
