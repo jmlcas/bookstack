@@ -1,4 +1,4 @@
-# bookstack
+# Bookstack
 
 Modifica si es necesario la línea 10 del docker-compose.yaml:
 
